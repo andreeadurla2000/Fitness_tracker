@@ -1,4 +1,4 @@
-/* 
+/*
  *  Program varianta cu accelerometru Adafruit LSM303 si comunicatie bluetooth pentru transmiterea wireless in calculator a valorilor 
  *  acceleratiei, in vederea analizei valorilor inregistrare si stabilirea pragului de detectie a unui pas
  */
@@ -62,7 +62,7 @@ void setup(void) {
 
 void loop(void)
 {
-  /* Exragem un nou event de la senzor*/
+  /* Extragem un nou event de la senzor*/
   sensors_event_t event;
   accel.getEvent(&event);
 
@@ -73,9 +73,10 @@ void loop(void)
 
 /* se calculeaza acceleratia rezultanta si se transmite catre calculator*/
    accRezultanta = sqrt (accX*accX+accY*accY+accZ*accZ);
-   Serial.print("Rezultanta: "); Serial.println(accRezultanta);
+   ModulBT.print("Rezultanta: "); ModulBT.println(accRezultanta);
  
  if (debug) {  // in modul debug se transmit valorile obtinute
+  Serial.print("Rezultanta: "); Serial.println(accRezultanta);
   Serial.print("X: "); Serial.print(event.acceleration.x); Serial.print("  ");
   Serial.print("Y: "); Serial.print(event.acceleration.y); Serial.print("  ");
   Serial.print("Z: "); Serial.print(event.acceleration.z); Serial.print("  ");Serial.println("m/s^2 ");
